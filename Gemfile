@@ -49,6 +49,10 @@ gem 'globalize', github: 'globalize/globalize'
 gem 'activemodel-serializers-xml'
 gem 'russian', '~> 0.6.0'
 
+#for secrets.yml
+gem 'dotenv'
+gem 'dotenv-deployment', require: 'dotenv/deployment'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -71,10 +75,6 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-rvm', require: false
-
-  #for secrets.yml
-  gem 'dotenv'
-  gem 'dotenv-deployment', require: 'dotenv/deployment'
 
   #for javascript
   gem 'therubyracer'
