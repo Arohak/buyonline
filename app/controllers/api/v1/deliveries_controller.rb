@@ -1,4 +1,4 @@
-class API::V1::DeliveriesController < ApplicationController
+class Api::V1::DeliveriesController < ApplicationController
 
   def index
     delivery = Delivery.all

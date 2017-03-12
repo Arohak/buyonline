@@ -1,4 +1,4 @@
-class API::V1::CategoryitemsController < ApplicationController
+class Api::V1::CategoryitemsController < ApplicationController
 
   def index
     categoryitems = Categoryitem.where(restaurant_id: params[:restaurant_id])

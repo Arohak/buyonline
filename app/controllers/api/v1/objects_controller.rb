@@ -1,4 +1,4 @@
-class API::V1::ObjectsController < ApplicationController
+class Api::V1::ObjectsController < ApplicationController
 
   def home
     news =  Restaurant.where(new: true).limit(5)

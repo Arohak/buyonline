@@ -1,4 +1,4 @@
-class API::V1::FavoritesController < ApplicationController
+class Api::V1::FavoritesController < ApplicationController
 
   def index
     if params[:user_id]

@@ -1,4 +1,4 @@
-class API::V1::SubcategoriesController < ApplicationController
+class Api::V1::SubcategoriesController < ApplicationController
 
   def index
     subcategories = Subcategory.where(category_id: params[:category_id])

@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Get::ParsesubcategoriesController < ApplicationController
 
   def parse
@@ -11,10 +13,10 @@ class Get::ParsesubcategoriesController < ApplicationController
     shops          = json['shops']
 
     parseSubcategories(subcategories)
-    parseRestaurants(restaurants)
-    parseShops(shops)
-    parseShopsInRestaurants()
-    hasManySubcategoriesRestaurants(subcategories, restaurants)
+    parseRestaurants(restaurants.first(11))
+    # parseShops(shops.first(20))
+    # parseShopsInRestaurants()
+    # hasManySubcategoriesRestaurants(subcategories, restaurants)
 
     render text: 'OK'
   end
@@ -32,6 +34,8 @@ class Get::ParsesubcategoriesController < ApplicationController
       subcategories.each do |subcategory|
         cat = Subcategory.find_by(subcategory_id:  subcategory['id'])
         category_id = subcategory['type'] == 'restaurants' ? 1 : 2
+
+        # dowloadImageWith(subcategory['src'])
 
         cat.update(category_id:     category_id,
                    name:        subcategory['label'],
@@ -52,6 +56,13 @@ class Get::ParsesubcategoriesController < ApplicationController
       end
     end
 
+  end
+
+  def dowloadImageWith(url)
+    local_path = "img/categories/#{url.to_s.split('/')[-1]}"
+    open(local_path, 'wb') do |file|
+      file << open(url).read
+    end
   end
 
   def parseRestaurants(restaurants)
